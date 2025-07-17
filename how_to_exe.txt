@@ -1,0 +1,22 @@
+
+
+#1
+bei views/system gibt es die stellen für die gui
+
+#2
+bei views/guiElements/searchElement muss man ändern um neue spalten fürs suchen zu defenieren
+
+#3
+bei views/guiElements/treeView muss man ändern damit die tabele sich ändert (treeview)
+
+#4
+bei model/model muss die datenbank geändert werden
+
+#5
+bei model/kontakt muss geändert werden 
+
+#6
+bei controllers/system scheint es sehr kompletziert zu sein und ganz vieles muss geändert werden
+
+#7
+bei printLogic/print_unit und printLogic/report müssen vieles geändert werden
