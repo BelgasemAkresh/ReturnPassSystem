@@ -36,7 +36,7 @@ class PDF_Printer:
         arabic_pattern = re.compile('[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]')
         return bool(arabic_pattern.search(text))
 
-    def print_text(self, text, x_mm, y_mm, font_size=11):
+    def print_text(self, text, x_mm, y_mm, arabic_buff=0,font_size=11):
 
         # hier eine wichtige stelle
 
@@ -47,11 +47,10 @@ class PDF_Printer:
             reshaped_text = arabic_reshaper.reshape(text)
             text = get_display(reshaped_text)
             self.canvas.setFont('Arabic', font_size + 2) #Arbisch-Schriftgroesse bei Drucken
-            text_width = self.canvas.stringWidth(text, 'Arabic', font_size)
-            self.canvas.drawString(x - text_width, y, text)
+            self.canvas.drawCentredString(x + arabic_buff, y, text)
         else:
             self.canvas.setFont('Helvetica', font_size)
-            self.canvas.drawString(x, y, text)
+            self.canvas.drawCentredString(x, y, text)
 
                                        #todo falls du image größe ändern möchtest
     def print_pic(self, image_data, x_mm, y_mm, x_scale=19, y_scale=22, transparency=240):

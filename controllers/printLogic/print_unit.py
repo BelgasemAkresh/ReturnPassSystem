@@ -35,12 +35,12 @@ class Print_Unit:
             for key in keys:
                 pos = config.get(key)
                 if pos and 'x' in pos and 'y' in pos:
-                    l.append([key, (pos['x'], pos['y'])])
+                    l.append([key, (pos['x'], pos['y'],  pos.get('arabic_buff', 0))])
 
-            print(l)
+#            print(l)
             for i in l:
-                print(i,str(self.kontakt[i[0]]), i[1][0], i[1][1])
-                self.printer.print_text(str(self.kontakt[i[0]]), i[1][0], i[1][1])
+                #print(i,str(self.kontakt[i[0]]), i[1][0], i[1][1])
+                self.printer.print_text(str(self.kontakt[i[0]]), i[1][0], i[1][1], i[1][2])
 
             #self.printer.print_text(  str(self.kontakt["port"]), 155, 26 )
 

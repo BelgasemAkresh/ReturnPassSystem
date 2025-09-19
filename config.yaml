@@ -9,20 +9,25 @@ pic:
 vorname:
   x: 60
   y: 36
+  arabic_buff: 0
    
 #تاريخ الميلاد
 visaValid:
   x: 49
   y: 26
+  arabic_buff: 0
   
  #محل الميلاد
 visaArt:
   x: 52
   y: 21
-  #المهنة
+  arabic_buff: 0
+
+#المهنة
 profession:
   x: 38
   y: 18
+  arabic_buff: 0
 
 #اسم ألام
 duration:
@@ -68,6 +73,7 @@ visaIss:
 entryFee:
   x: 137
   y: 4
+
 #أسم حامل الوثيقة (بالعربي)
 nachname:
   x: 175
