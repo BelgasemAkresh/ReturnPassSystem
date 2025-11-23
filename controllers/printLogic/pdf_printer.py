@@ -10,6 +10,8 @@ import arabic_reshaper
 from bidi.algorithm import get_display
 import tkinter as tk
 from tkinter import filedialog
+import yaml
+
 
 class PDF_Printer:
     def __init__(self, filename='output.pdf'):
@@ -24,6 +26,9 @@ class PDF_Printer:
         self._register_fonts()
         self.extraY = 102*5.6
         self.extraY_image = -1
+        with open('config.yaml', 'r', encoding='utf-8') as file:
+            config = yaml.safe_load(file)
+        self.font_size = config.get("font_size")
 
     def _register_fonts(self):
         pdfmetrics.registerFont(TTFont('Arabic', 'ar.ttf'))
@@ -36,7 +41,7 @@ class PDF_Printer:
         arabic_pattern = re.compile('[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]')
         return bool(arabic_pattern.search(text))
 
-    def print_text(self, text, x_mm, y_mm, arabic_buff=0,font_size=11):
+    def print_text(self, text, x_mm, y_mm, arabic_buff=0):
 
         # hier eine wichtige stelle
 
@@ -46,10 +51,10 @@ class PDF_Printer:
         if self._is_arabic(text):
             reshaped_text = arabic_reshaper.reshape(text)
             text = get_display(reshaped_text)
-            self.canvas.setFont('Arabic', font_size + 2) #Arbisch-Schriftgroesse bei Drucken
+            self.canvas.setFont('Arabic', self.font_size + 2) #Arbisch-Schriftgroesse bei Drucken
             self.canvas.drawCentredString(x + arabic_buff, y, text)
         else:
-            self.canvas.setFont('Helvetica', font_size)
+            self.canvas.setFont('Helvetica', self.font_size)
             self.canvas.drawCentredString(x, y, text)
 
                                        #todo falls du image größe ändern möchtest
